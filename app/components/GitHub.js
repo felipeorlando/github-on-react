@@ -1,5 +1,6 @@
 var React = require('react');
 var SearchUser = require('./SearchUser');
+var UserInfos = require('./UserInfos');
 
 var GitHub = React.createClass({
     getInitialState: function() {
@@ -16,9 +17,13 @@ var GitHub = React.createClass({
     },
     render: function() {
         return (
-            <SearchUser
-             updateUser={this.updateUser}
-             updateRepos={this.updateRepos} />
+            <div className="container">
+              <SearchUser
+                updateUser={this.updateUser}
+                updateRepos={this.updateRepos} />
+              <UserInfos
+                user={this.state.user} />
+            </div>
         );
     }
 });
