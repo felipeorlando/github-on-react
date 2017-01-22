@@ -17,7 +17,7 @@ var SearchUser = React.createClass({
     },
     render: function() {
         return (
-            <div className="jumbotron">
+            <div className="jumbotron br-jb">
                 <div className="row">
                     <h1>GitHub on React</h1>
                     <p>Esta é uma aplicação apenas com fins de aprendizado.</p>
@@ -32,7 +32,6 @@ var SearchUser = React.createClass({
                              type="text"
                              placeholder="Username"
                              className="form-control"
-                             describedby="username"
                              ref="username" />
                             <span className="input-group-btn">
                                 <button className="btn btn-default" type="submit">Buscar</button>

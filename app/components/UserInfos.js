@@ -9,14 +9,22 @@ var UserInfos = React.createClass({
             return (
                 <div className="row">
                     <div className="col-md-4">
-                        <div className="thumbnail">
-                            <img src={user.avatar_url}/>
-                            <h1>{user.name}</h1>
+                        <div className="user-info">
+                            <div className="thumbnail">
+                                <img src={user.avatar_url}/>
+                                <h1>{user.name}</h1>
+                                <p>{user.location}</p>
+                                <p>
+                                    <a href="{user.html_url}" target="_blank">
+                                        @{user.login}
+                                    </a>
+                                </p>
+                            </div>
                         </div>
                     </div>
 
                     <div className="col-md-8">
-                        <UserRepos repos={props.repos} />
+                        <UserRepos repos={this.props.repos} />
                     </div>
                 </div>
             );

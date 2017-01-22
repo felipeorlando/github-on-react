@@ -22,7 +22,8 @@ var GitHub = React.createClass({
                 updateUser={this.updateUser}
                 updateRepos={this.updateRepos} />
               <UserInfos
-                user={this.state.user} />
+                user={this.state.user}
+                repos={this.state.repos} />
             </div>
         );
     }

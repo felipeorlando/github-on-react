@@ -21516,7 +21516,8 @@
 	                updateUser: this.updateUser,
 	                updateRepos: this.updateRepos }),
 	            React.createElement(UserInfos, {
-	                user: this.state.user })
+	                user: this.state.user,
+	                repos: this.state.repos })
 	        );
 	    }
 	});
@@ -21549,7 +21550,7 @@
 	    render: function () {
 	        return React.createElement(
 	            'div',
-	            { className: 'jumbotron' },
+	            { className: 'jumbotron br-jb' },
 	            React.createElement(
 	                'div',
 	                { className: 'row' },
@@ -21587,7 +21588,6 @@
 	                            type: 'text',
 	                            placeholder: 'Username',
 	                            className: 'form-control',
-	                            describedby: 'username',
 	                            ref: 'username' }),
 	                        React.createElement(
 	                            'span',
@@ -23135,19 +23135,38 @@
 	                    { className: 'col-md-4' },
 	                    React.createElement(
 	                        'div',
-	                        { className: 'thumbnail' },
-	                        React.createElement('img', { src: user.avatar_url }),
+	                        { className: 'user-info' },
 	                        React.createElement(
-	                            'h1',
-	                            null,
-	                            user.name
+	                            'div',
+	                            { className: 'thumbnail' },
+	                            React.createElement('img', { src: user.avatar_url }),
+	                            React.createElement(
+	                                'h1',
+	                                null,
+	                                user.name
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                null,
+	                                user.location
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                null,
+	                                React.createElement(
+	                                    'a',
+	                                    { href: '{user.html_url}', target: '_blank' },
+	                                    '@',
+	                                    user.login
+	                                )
+	                            )
 	                        )
 	                    )
 	                ),
 	                React.createElement(
 	                    'div',
 	                    { className: 'col-md-8' },
-	                    React.createElement(UserRepos, { repos: props.repos })
+	                    React.createElement(UserRepos, { repos: this.props.repos })
 	                )
 	            );
 	        } else {
@@ -23171,10 +23190,54 @@
 	var React = __webpack_require__(1);
 
 	var UserRepos = React.createClass({
-	    displayName: 'UserRepos',
+	    displayName: "UserRepos",
 
+	    getInitialState: function () {
+	        return {
+	            reposCount: 0
+	        };
+	    },
+	    componentWillReceiveProps: function (props) {
+	        this.setState({ reposCount: props.repos.length });
+	    },
 	    render: function () {
-	        //
+	        var reposAll = this.props.repos.map(function (repo, key) {
+	            return React.createElement(
+	                "div",
+	                { className: "thumbnail" },
+	                React.createElement(
+	                    "h3",
+	                    null,
+	                    repo.name
+	                ),
+	                React.createElement(
+	                    "p",
+	                    null,
+	                    repo.description
+	                ),
+	                React.createElement(
+	                    "p",
+	                    null,
+	                    React.createElement(
+	                        "a",
+	                        { href: repo.html_url, className: "btn btn-primary", role: "button" },
+	                        "Repository"
+	                    )
+	                )
+	            );
+	        });
+
+	        return React.createElement(
+	            "div",
+	            { className: "repos" },
+	            React.createElement(
+	                "small",
+	                null,
+	                this.state.reposCount,
+	                " reposit\xF3rio(s)"
+	            ),
+	            reposAll
+	        );
 	    }
 	});
 
